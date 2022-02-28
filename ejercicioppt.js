@@ -6,25 +6,31 @@
 // 1 punto. En caso de empate ninguna de las 2 partes sumará puntos. El ganador final será el que
 // consiga 3 puntos.
 
-const juego = prompt("Piedra, Papel o Tijera");
+const eleccionesDelOrdenador = ["piedra", "papel", "tijera"];
 
-const posibilidades = ["piedra", "papel", "tijera"];
+const posicionAleatorio = Math.floor(
+  Math.random() * eleccionesDelOrdenador.length
+);
 
-const aleatorio = Math.floor(Math.random() * posibilidades.length);
+const posibilidadesDelOrdenador = eleccionesDelOrdenador[posicionAleatorio];
 
-const posibilidadesCpu = posibilidades[aleatorio];
-
-const usuario = "piedra";
-switch (usuario) {
-  case "piedra":
-    if (posibilidadesCpu === "piedra") {
-      alert("Empatas");
+const EleccionDelUsuario = prompt("¿Piedra Papel o Tijera 1, 2, 3. YA?");
+switch (EleccionDelUsuario) {
+  case EleccionDelUsuario:
+    if (posibilidadesDelOrdenador == EleccionDelUsuario) {
+      alert(
+        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú  juegas ${EleccionDelUsuario} Empataron suma 2 puntos`
+      );
     }
-    if (posibilidadesCpu === "papel") {
-      alert("Pierdes");
+    if (posibilidadesDelOrdenador < EleccionDelUsuario) {
+      alert(
+        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú juegas ${EleccionDelUsuario} Ganaste suma 1 punto`
+      );
     }
-    if (posibilidadesCpu === "tijera") {
-      alert("Ganas");
+    if (posibilidadesDelOrdenador > EleccionDelUsuario) {
+      alert(
+        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú juegas ${EleccionDelUsuario} Perdiste gana ordenador 1 punto`
+      );
     }
     break;
 
