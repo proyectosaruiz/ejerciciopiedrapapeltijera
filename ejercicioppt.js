@@ -6,34 +6,39 @@
 // 1 punto. En caso de empate ninguna de las 2 partes sumará puntos. El ganador final será el que
 // consiga 3 puntos.
 
-const eleccionesDelOrdenador = ["piedra", "papel", "tijera"];
+"use strict";
 
-const posicionAleatorio = Math.floor(
-  Math.random() * eleccionesDelOrdenador.length
-);
+const posibilidadesOrdenador = ["piedra", "papel", "tijeras"];
+let puntosUsuario = 0;
+let puntosOrdenador = 0;
 
-const posibilidadesDelOrdenador = eleccionesDelOrdenador[posicionAleatorio];
+while (puntosUsuario < 3 && puntosOrdenador < 3) {
+  const posicionAleatoria = Math.floor(Math.random() * 3);
 
-const EleccionDelUsuario = prompt("¿Piedra Papel o Tijera 1, 2, 3. YA?");
-switch (EleccionDelUsuario) {
-  case EleccionDelUsuario:
-    if (posibilidadesDelOrdenador == EleccionDelUsuario) {
-      alert(
-        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú  juegas ${EleccionDelUsuario} Empataron suma 2 puntos`
-      );
-    }
-    if (posibilidadesDelOrdenador < EleccionDelUsuario) {
-      alert(
-        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú juegas ${EleccionDelUsuario} Ganaste suma 1 punto`
-      );
-    }
-    if (posibilidadesDelOrdenador > EleccionDelUsuario) {
-      alert(
-        `Jugada del ordenador ${posibilidadesDelOrdenador} y tú juegas ${EleccionDelUsuario} Perdiste gana ordenador 1 punto`
-      );
-    }
-    break;
+  const eleccionOrdenador = posibilidadesOrdenador[posicionAleatoria];
+  const eleccionUsuario = prompt("Juega tu opción");
 
-  default:
-    break;
+  console.log("Eleccion del usuario :", eleccionUsuario);
+  console.log("Eleccion del ordenador :", eleccionOrdenador);
+
+  if (
+    (eleccionOrdenador === "piedra" && eleccionUsuario === "tijeras") ||
+    (eleccionOrdenador === "tijeras" && eleccionUsuario === "papel") ||
+    (eleccionOrdenador === "papel" && eleccionUsuario === "piedra")
+  ) {
+    console.log("El ordenador gana");
+    puntosOrdenador++;
+  } else if (
+    (eleccionOrdenador === "piedra" && eleccionUsuario === "papel") ||
+    (eleccionOrdenador === "tijeras" && eleccionUsuario === "piedra") ||
+    (eleccionOrdenador === "papel" && eleccionUsuario === "tijeras")
+  ) {
+    console.log("El usuario gana");
+    puntosUsuario++;
+  } else {
+    console.log("Empate");
+  }
+
+  console.log("Puntos usuario:", puntosUsuario);
+  console.log("Puntos ordenador:", puntosOrdenador);
 }
